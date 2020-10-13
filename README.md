@@ -203,7 +203,7 @@ const PROPERTIES = [...PROPERTIES_REFERENCING_STRINGS, ...PROPERTIES_REFERENCING
 // → false
 is.record(ARRAY_OF_STRINGS);
 is.record(null);
-// true
+// → true
 is.record({});
 is.record(RECORD);
 
@@ -211,7 +211,7 @@ is.record(RECORD);
 
 // → false
 is.recordWithProperties(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty']);
-// true
+// → true
 is.recordWithProperties(RECORD, PROPERTIES_REFERENCING_STRINGS);
 is.recordWithProperties(RECORD, PROPERTIES);
 
@@ -220,7 +220,7 @@ is.recordWithProperties(RECORD, PROPERTIES);
 // → false
 is.recordWithPropertiesExclusively(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty']);
 is.recordWithPropertiesExclusively(RECORD, PROPERTIES_REFERENCING_STRINGS);
-// true
+// → true
 is.recordWithPropertiesExclusively(RECORD, PROPERTIES)) // RECORD contains only the properties specified by PROPERTIES
 
 // is.recordWithPropertiesAndStringValues(src, expectedProperties)
@@ -229,6 +229,6 @@ is.recordWithPropertiesExclusively(RECORD, PROPERTIES)) // RECORD contains only 
 is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES);
 is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES_REFERENCING_NON_STRINGS);
 is.recordWithPropertiesAndStringValues(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty']);
-// true
+// → true
 is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES_REFERENCING_STRINGS);
 ```
