@@ -14,7 +14,8 @@ Thus:
 - is.numberOrNull(src)
 - is.string(src)
 - is.stringWithSomething(src)
-- is.stringFromDistinct(src, distinct)
+- is.stringFromDistinct(src, distinctItems)
+- is.stringFromDistinctOrNothing(src, distinctItems)
 - is.array(src)
 - is.arrayWithSomething(src)
 - is.arrayOfStringValues(src)
@@ -56,7 +57,7 @@ is.number(2);
 is.number(0);
 is.number(-2);
 
-/// is.numberOrNull(src)
+// is.numberOrNull(src)
 
 // → false
 is.numberOrNull({});
@@ -100,7 +101,7 @@ const DISTINCT_INTEREST_LEVEL_RESPONSE = [
   'somewhat-interested',
   'very-interested'];
 
-// is.stringFromDistinct(src, distinct)
+// is.stringFromDistinct(src, distinctItems)
 
 // → false
 is.stringFromDistinct('not-an-item', DISTINCT_INTEREST_LEVEL_RESPONSE);
@@ -108,7 +109,7 @@ is.stringFromDistinct('', DISTINCT_INTEREST_LEVEL_RESPONSE);
 // → true
 is.stringFromDistinct('not-interested', DISTINCT_INTEREST_LEVEL_RESPONSE);
 
-// is.stringFromDistinctOrNothing(src, distinct)
+// is.stringFromDistinctOrNothing(src, distinctItems)
 
 // → false
 is.stringFromDistinctOrNothing('not-an-item', DISTINCT_INTEREST_LEVEL_RESPONSE);
