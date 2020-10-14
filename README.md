@@ -35,10 +35,16 @@ Thanks to Adam Nathaniel Davis for his [series](https://dev.to/bytebodger/tossin
 
 We use es6 modules (Node version >= 13.2.0). See [Announcing core Node.js support for ECMAScript modules](https://medium.com/@nodejs/announcing-core-node-js-support-for-ecmascript-modules-c5d6dc29b663).
 
+## Installation
+
+```bash
+npm install https://github.com/synchronopeia/is
+```
+
 ## Use
 
 ```javascript
-import is from 'is';
+import is from 'is.mjs';
 
 /**
  * number ("primitive")
