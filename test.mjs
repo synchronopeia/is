@@ -10,30 +10,26 @@ import is from './index.mjs';
  */
 
 test('is.number(src) distinguishes number/non-number', (t) => {
-  // → false
-  if (is.number({})) t.fail();
-  if (is.number('a')) t.fail();
-  if (is.number('1')) t.fail();
-  if (is.number(undefined)) t.fail();
-  if (is.number(null)) t.fail();
-  // → true
-  if (!is.number(2)) t.fail();
-  if (!is.number(0)) t.fail();
-  if (!is.number(-2)) t.fail();
+  t.false(is.number({}));
+  t.false(is.number('a'));
+  t.false(is.number('1'));
+  t.false(is.number(undefined));
+  t.false(is.number(null));
+  t.true(is.number(2));
+  t.true(is.number(0));
+  t.true(is.number(-2));
   t.pass();
 });
 
 test('is.numberOrNull(src) recognizes null as missing "number"', (t) => {
-  // → false
-  if (is.numberOrNull({})) t.fail();
-  if (is.numberOrNull('a')) t.fail();
-  if (is.numberOrNull('1')) t.fail();
-  if (is.numberOrNull(undefined)) t.fail();
-  // → true
-  if (!is.numberOrNull(null)) t.fail();
-  if (!is.numberOrNull(2)) t.fail();
-  if (!is.numberOrNull(0)) t.fail();
-  if (!is.numberOrNull(-2)) t.fail();
+  t.false(is.numberOrNull({}));
+  t.false(is.numberOrNull('a'));
+  t.false(is.numberOrNull('1'));
+  t.false(is.numberOrNull(undefined));
+  t.true(is.numberOrNull(null));
+  t.true(is.numberOrNull(2));
+  t.true(is.numberOrNull(0));
+  t.true(is.numberOrNull(-2));
   t.pass();
 });
 
@@ -44,20 +40,16 @@ test('is.numberOrNull(src) recognizes null as missing "number"', (t) => {
 const SENTENCE = 'This is a sentence.';
 
 test('is.string(src)', (t) => {
-  // → false
-  if (is.string(2)) t.fail();
-  // → true
-  if (!is.string('')) t.fail();
-  if (!is.string(SENTENCE)) t.fail();
+  t.false(is.string(2));
+  t.true(is.string(''));
+  t.true(is.string(SENTENCE));
   t.pass();
 });
 
 test('is.stringWithSomething(src) also requires src have non-zero length', (t) => {
-  // → false
-  if (is.stringWithSomething(2)) t.fail();
-  if (is.stringWithSomething('')) t.fail();
-  // → true
-  if (!is.stringWithSomething(SENTENCE)) t.fail();
+  t.false(is.stringWithSomething(2));
+  t.false(is.stringWithSomething(''));
+  t.true(is.stringWithSomething(SENTENCE));
   t.pass();
 });
 
@@ -71,20 +63,16 @@ const DISTINCT_INTEREST_LEVEL_RESPONSE = [
   'very-interested'];
 
 test('is.stringFromDistinct(src, distinct) recognizes src from distinct', (t) => {
-  // → false
-  if (is.stringFromDistinct('not-an-item', DISTINCT_INTEREST_LEVEL_RESPONSE)) t.fail();
-  if (is.stringFromDistinct('', DISTINCT_INTEREST_LEVEL_RESPONSE)) t.fail();
-  // → true
-  if (!is.stringFromDistinct('not-interested', DISTINCT_INTEREST_LEVEL_RESPONSE)) t.fail();
+  t.false(is.stringFromDistinct('not-an-item', DISTINCT_INTEREST_LEVEL_RESPONSE));
+  t.false(is.stringFromDistinct('', DISTINCT_INTEREST_LEVEL_RESPONSE));
+  t.true(is.stringFromDistinct('not-interested', DISTINCT_INTEREST_LEVEL_RESPONSE));
   t.pass();
 });
 
 test('is.stringFromDistinctOrNothing(src, distinct) also allows empty string', (t) => {
-  // → false
-  if (is.stringFromDistinctOrNothing('not-an-item', DISTINCT_INTEREST_LEVEL_RESPONSE)) t.fail();
-  // → true
-  if (!is.stringFromDistinctOrNothing('', DISTINCT_INTEREST_LEVEL_RESPONSE)) t.fail();
-  if (!is.stringFromDistinctOrNothing('not-interested', DISTINCT_INTEREST_LEVEL_RESPONSE)) t.fail();
+  t.false(is.stringFromDistinctOrNothing('not-an-item', DISTINCT_INTEREST_LEVEL_RESPONSE));
+  t.true(is.stringFromDistinctOrNothing('', DISTINCT_INTEREST_LEVEL_RESPONSE));
+  t.true(is.stringFromDistinctOrNothing('not-interested', DISTINCT_INTEREST_LEVEL_RESPONSE));
   t.pass();
 });
 
@@ -96,64 +84,52 @@ const ARRAY_OF_NUMBERS = [1, 2, 3, 4];
 const ARRAY_OF_STRINGS = ['words', 'in', 'an', 'array'];
 
 test('is.array(src) distinguishes array/non-array', (t) => {
-  // → false
-  if (is.array({})) t.fail();
-  // → true
-  if (!is.array([])) t.fail();
-  if (!is.array(ARRAY_OF_STRINGS)) t.fail();
+  t.false(is.array({}));
+  t.true(is.array([]));
+  t.true(is.array(ARRAY_OF_STRINGS));
   t.pass();
 });
 
 test('is.arrayWithSomething(src) also expects src to have non-zero length', (t) => {
-  // → false
-  if (is.arrayWithSomething({})) t.fail();
-  if (is.arrayWithSomething([])) t.fail();
-  // → true
-  if (!is.arrayWithSomething(ARRAY_OF_STRINGS)) t.fail();
+  t.false(is.arrayWithSomething({}));
+  t.false(is.arrayWithSomething([]));
+  t.true(is.arrayWithSomething(ARRAY_OF_STRINGS));
   t.pass();
 });
 
 test('is.arrayOfStringValues(src) also expects each element of src array to be a string', (t) => {
-  // → false
-  if (is.arrayOfStringValues({})) t.fail();
-  if (is.arrayOfStringValues(ARRAY_OF_NUMBERS)) t.fail();
-  // → true
-  if (!is.arrayOfStringValues([])) t.fail();
-  if (!is.arrayOfStringValues(ARRAY_OF_STRINGS)) t.fail();
-  if (!is.arrayOfStringValues([...ARRAY_OF_STRINGS, ''])) t.fail(); // note inclusion of empty string
+  t.false(is.arrayOfStringValues({}));
+  t.false(is.arrayOfStringValues(ARRAY_OF_NUMBERS));
+  t.true(is.arrayOfStringValues([]));
+  t.true(is.arrayOfStringValues(ARRAY_OF_STRINGS));
+  t.true(is.arrayOfStringValues([...ARRAY_OF_STRINGS, ''])); // note inclusion of empty string
   t.pass();
 });
 
 test('is.arrayOfStringWithSomethingValues(src) also requires strings to have non-zero length', (t) => {
-  // → false
-  if (is.arrayOfStringWithSomethingValues({})) t.fail();
-  if (is.arrayOfStringWithSomethingValues(ARRAY_OF_NUMBERS)) t.fail();
-  if (is.arrayOfStringWithSomethingValues([...ARRAY_OF_STRINGS, ''])) t.fail();
-  // → true
-  if (!is.arrayOfStringWithSomethingValues([])) t.fail();
-  if (!is.arrayOfStringWithSomethingValues(ARRAY_OF_STRINGS)) t.fail();
+  t.false(is.arrayOfStringWithSomethingValues({}));
+  t.false(is.arrayOfStringWithSomethingValues(ARRAY_OF_NUMBERS));
+  t.false(is.arrayOfStringWithSomethingValues([...ARRAY_OF_STRINGS, '']));
+  t.true(is.arrayOfStringWithSomethingValues([]));
+  t.true(is.arrayOfStringWithSomethingValues(ARRAY_OF_STRINGS));
   t.pass();
 });
 
 test('is.arrayOfNumberValues(src) also expects each element of src array to be a number', (t) => {
-  // → false
-  if (is.arrayOfNumberValues({})) t.fail();
-  if (is.arrayOfNumberValues(ARRAY_OF_STRINGS)) t.fail();
-  if (is.arrayOfNumberValues([...ARRAY_OF_NUMBERS, null])) t.fail(); // note inclusion of null
-  // → true
-  if (!is.arrayOfNumberValues(ARRAY_OF_NUMBERS)) t.fail();
-  if (!is.arrayOfNumberValues([])) t.fail(); // empty array => TRUE
+  t.false(is.arrayOfNumberValues({}));
+  t.false(is.arrayOfNumberValues(ARRAY_OF_STRINGS));
+  t.false(is.arrayOfNumberValues([...ARRAY_OF_NUMBERS, null])); // note inclusion of null
+  t.true(is.arrayOfNumberValues(ARRAY_OF_NUMBERS));
+  t.true(is.arrayOfNumberValues([])); // empty array => TRUE
   t.pass();
 });
 
 test('is.arrayOfNumberOrNullValues(src) also allows null elements', (t) => {
-  // → false
-  if (is.arrayOfNumberOrNullValues({})) t.fail();
-  if (is.arrayOfNumberOrNullValues(ARRAY_OF_STRINGS)) t.fail();
-  // → true
-  if (!is.arrayOfNumberOrNullValues([...ARRAY_OF_NUMBERS, null])) t.fail();
-  if (!is.arrayOfNumberOrNullValues(ARRAY_OF_NUMBERS)) t.fail();
-  if (!is.arrayOfNumberOrNullValues([])) t.fail();
+  t.false(is.arrayOfNumberOrNullValues({}));
+  t.false(is.arrayOfNumberOrNullValues(ARRAY_OF_STRINGS));
+  t.true(is.arrayOfNumberOrNullValues([...ARRAY_OF_NUMBERS, null]));
+  t.true(is.arrayOfNumberOrNullValues(ARRAY_OF_NUMBERS));
+  t.true(is.arrayOfNumberOrNullValues([]));
   t.pass();
 });
 
@@ -177,38 +153,31 @@ const PROPERTIES = [...PROPERTIES_REFERENCING_STRINGS, ...PROPERTIES_REFERENCING
 
 test('is.record(src) distinguishes Object {} from [] or null', (t) => {
   // → false
-  if (is.record(ARRAY_OF_STRINGS)) t.fail();
-  if (is.record(null)) t.fail();
-  // true
-  if (!is.record({})) t.fail(); // {} is a valid record => TRUE
-  if (!is.record(RECORD)) t.fail();
+  t.false(is.record(ARRAY_OF_STRINGS));
+  t.false(is.record(null));
+  t.true(is.record({})); // {} is a valid record => TRUE
+  t.true(is.record(RECORD));
   t.pass();
 });
 
 test('is.recordWithProperties(src, expectedProperties) also checks for the expectedProperties', (t) => {
-  // → false
-  if (is.recordWithProperties(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty'])) t.fail();
-  // true
-  if (!is.recordWithProperties(RECORD, PROPERTIES_REFERENCING_STRINGS)) t.fail(); // expectedProperties as subset of acutal keys should => TRUE
-  if (!is.recordWithProperties(RECORD, PROPERTIES)) t.fail(); // exact match between actual keys and expectedProperties => TRUE
+  t.false(is.recordWithProperties(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty']));
+  t.true(is.recordWithProperties(RECORD, PROPERTIES_REFERENCING_STRINGS)); // expectedProperties as subset of acutal keys should => TRUE
+  t.true(is.recordWithProperties(RECORD, PROPERTIES)); // exact match between actual keys and expectedProperties => TRUE
   t.pass();
 });
 
 test('is.recordWithPropertiesExclusively(src, expectedProperties) also checks that expectedProperties exactly matches available keys in src', (t) => {
-  // → false
-  if (is.recordWithPropertiesExclusively(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty'])) t.fail(); // specifying extra keys => FALSE
-  if (is.recordWithPropertiesExclusively(RECORD, PROPERTIES_REFERENCING_STRINGS)) t.fail(); // expectedProperties as subset of acutal keys => FALSE
-  // true
-  if (!is.recordWithPropertiesExclusively(RECORD, PROPERTIES)) t.fail(); // exact match between actual keys and expectedProperties => TRUE
+  t.false(is.recordWithPropertiesExclusively(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty'])); // specifying extra keys => FALSE
+  t.false(is.recordWithPropertiesExclusively(RECORD, PROPERTIES_REFERENCING_STRINGS)); // expectedProperties as subset of acutal keys => FALSE
+  t.true(is.recordWithPropertiesExclusively(RECORD, PROPERTIES)); // exact match between actual keys and expectedProperties => TRUE
   t.pass();
 });
 
 test('is.recordWithPropertiesAndStringValues(src, expectedProperties) checks for the expectedProperties and checks that values are strings', (t) => {
-  // → false
-  if (is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES)) t.fail(); // expectedProperties references string and non-string values => FALSE
-  if (is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES_REFERENCING_NON_STRINGS)) t.fail(); // expectedProperties references subset of only non-string values => FALSE
-  if (is.recordWithPropertiesAndStringValues(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty'])) t.fail(); // specifying extra keys => FALSE
-  // true
-  if (!is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES_REFERENCING_STRINGS)) t.fail(); // expectedProperties references subset of only string values => TRUE
+  t.false(is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES)); // expectedProperties references string and non-string values => FALSE
+  t.false(is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES_REFERENCING_NON_STRINGS)); // expectedProperties references subset of only non-string values => FALSE
+  t.false(is.recordWithPropertiesAndStringValues(RECORD, [...PROPERTIES_REFERENCING_STRINGS, 'extraProperty'])); // specifying extra keys => FALSE
+  t.true(is.recordWithPropertiesAndStringValues(RECORD, PROPERTIES_REFERENCING_STRINGS)); // expectedProperties references subset of only string values => TRUE
   t.pass();
 });
