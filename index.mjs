@@ -15,7 +15,7 @@ const numberOrNull = (src) => ((typeof src === 'number') || (src === null));
 
 const string = (src) => (typeof src === 'string');
 
-const stringWithSomething = (src) => (string(src) && src.length);
+const stringWithSomething = (src) => (string(src) && Boolean(src.length));
 
 const stringFromDistinct = (arg, distinctList) => {
   if (!string(arg)) return false;
@@ -31,7 +31,7 @@ const stringFromDistinctOrNothing = (arg, distinctList) => {
 
 const array = (src) => Array.isArray(src);
 
-const arrayWithSomething = (src) => (Array.isArray(src) && src.length);
+const arrayWithSomething = (src) => (Array.isArray(src) && Boolean(src.length));
 
 const arrayOfStringValues = (src) => {
   if (!array(src)) return false;
@@ -40,7 +40,7 @@ const arrayOfStringValues = (src) => {
 
 const arrayOfStringWithSomethingValues = (src) => {
   if (!array(src)) return false;
-  return src.every((testArg) => ((typeof testArg === 'string') && testArg.length));
+  return src.every((testArg) => ((typeof testArg === 'string') && Boolean(testArg.length)));
 };
 
 const arrayOfNumberValues = (src) => {
