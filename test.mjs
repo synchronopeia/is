@@ -137,7 +137,7 @@ test('is.arrayOfNumberOrNullValues(src) also allows null elements', (t) => {
  * Record
  *
  * non-array object with enumerable properties
-*/
+ */
 
 const RECORD = {
   name: 'Brazil',
