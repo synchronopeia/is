@@ -1,33 +1,29 @@
 # Simple Type and Shape Confirmation Library
 
-A simple library to confirm expected types and/or shapes for JavaScript variables.
+## Motivation
 
-So often for example, we're expecting input something like ```['words', 'in', 'an', 'array']```, in which case ```is.array()```, ```is.arrayWithSomething()```, ```is.arrayOfStrings()```, or ```is.arrayOfStringsWithSomething()``` can be useful.
+We tried to create a concise and consistent grammar to perform common checks of variables originating from users and datasets.
 
-Additionally, we use ```null``` to represent an "unset" or missing value for an ostensibly "number" type. The simple ```is.number()``` and ```is.numberOrNull()``` leverages a lot of power into our workflow.
+### Numbers
 
-Recognizing the subtle differences between things and defining a grammar that differentiates them helps us write reliable and understandable code.
+For __numbers__, ```null``` often represents a missing or unset value. Sometimes ```null``` is OK (when parsing input), sometimes not (when doing calculations). The ```is.numberOrNull()``` and ```is.number()``` pair provides a syntactically uniform way to make the distinction.
 
-Thus:
+### Strings
 
-- is.number(src)
-- is.numberOrNull(src)
-- is.string(src)
-- is.stringWithSomething(src)
-- is.stringFromDistinct(src, distinctItems)
-- is.stringFromDistinctOrNothing(src, distinctItems)
-- is.array(src)
-- is.arrayWithSomething(src)
-- is.arrayOfStringValues(src)
-- is.arrayOfStringWithSomethingValues({})
-- is.arrayOfNumberValues(src)
-- is.arrayOfNumberOrNullValues(src)
-- is.record(src)
-- is.recordWithProperties(src, expectedProperties)
-- is.recordWithPropertiesExclusively(src, expectedProperties)
-- is.recordWithPropertiesAndStringValues(src, expectedProperties)
+For __strings__, we have ```is.string()``` and ```is.stringWithSomething()```.
 
-Inspired by TypeScript. Tempered by a reluctance to adopt TypeScript?
+### Arrays
+
+Following the syntax established above we have ```is.array()``` and ```is.arrayWithSomething()```.
+
+By extension:
+
+- ```is.arrayOfStringValues()``` and ```is.arrayOfStringWithSomethingValues()```
+- ```is.arrayOfNumberValues()``` and ```is.arrayOfNumberOrNullValues()```
+
+Please see the "Use" section below or the [test](./test.mjs) module for additional features.
+
+## Credits
 
 Thanks to Adam Nathaniel Davis for his [series](https://dev.to/bytebodger/tossing-typescript-1md3) and associated code [GitHub](https://github.com/bytebodger/type-checking/blob/master/is.js).
 
