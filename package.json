@@ -2,7 +2,7 @@
   "name": "@synchronopeia/is",
   "version": "0.1.1",
   "description": "Simple Type and Shape Confirmation Library",
-  "main": "index.js",
+  "main": "index.mjs",
   "engines": {
     "node": ">=13.2.0"
   },
