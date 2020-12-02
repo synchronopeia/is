@@ -21,7 +21,7 @@ By extension:
 - ```is.arrayOfStringValues()``` and ```is.arrayOfStringWithSomethingValues()```
 - ```is.arrayOfNumberValues()``` and ```is.arrayOfNumberOrNullValues()```
 
-Please see the "Use" section below or the [test](./test.mjs) module for additional features.
+Please see the "Use" section below or the [test](https://github.com/synchronopeia/is/test.mjs) module for additional features.
 
 ## Credits
 
@@ -34,13 +34,13 @@ We use es6 modules (Node version >= 13.2.0). See [Announcing core Node.js suppor
 ## Installation
 
 ```bash
-npm install https://github.com/synchronopeia/is
+npm install @synchronopeia/is
 ```
 
 ## Use
 
 ```javascript
-import is from 'is.mjs';
+import is from '@synchronopeia/is';
 
 /**
  * number ("primitive")
